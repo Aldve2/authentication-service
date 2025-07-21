@@ -6,7 +6,7 @@ server:
   port: 10061
 env:
   url:
-    person-service: http://${person_service_ip}:10011/personService
-    user-service: http://${user_service_ip}:10021/userService
-    role-service: http://${role_service_ip}:10031/roleService
-    session-service: http://${session_service_ip}:10081/sessionService
+    person-service: ${person_service}/personService
+    user-service: ${user_service}/userService
+    role-service: ${role_service}/roleService
+    session-service: ${session_service}/sessionService
