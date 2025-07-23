@@ -63,13 +63,17 @@ jobs:
             --task-definition ${{ env.ECS_TASK_DEFINITION }} \
             --query 'taskDefinition' > task-definition.json
           echo "✓ Task definition retrieved"
-      - name: Update task definition with Neo4j configuration
+      - name: Update task definition
         if: steps.verify-aws.outcome == 'success'
         id: update-task-def
         run: |
           echo "Updating task definition"
           jq --arg IMAGE "${{ env.IMAGE_NAME }}" \
              --arg NAME "${{ env.CONTAINER_NAME }}" \
+             --arg PERSON_SERVICE "$PERSON_SERVICE" \
+             --arg USER_SERVICE "$USER_SERVICE" \
+             --arg ROLE_SERVICE "$ROLE_SERVICE" \
+             --arg SESSION_SERVICE "$SESSION_SERVICE" \
              'del(.taskDefinitionArn, .revision, .status, .requiresAttributes, .compatibilities, .registeredAt, .registeredBy) |
              .containerDefinitions |= map(
                if .name == $NAME then 
