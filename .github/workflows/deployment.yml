@@ -90,13 +90,13 @@ jobs:
                    {
                      "name": "SESSION_SERVICE",
                      "value": $SESSION_SERVICE
-                   },
+                   }
                  ]
                else . end
              ) |
              if .executionRoleArn == null then del(.executionRoleArn) else . end' \
              task-definition.json > updated-task-definition.json
-          echo "✓ Task definition updated with Neo4j configuration"
+          echo "✓ Task definition updated"
       - name: Register new task definition
         if: steps.verify-aws.outcome == 'success'
         id: register-task-def
