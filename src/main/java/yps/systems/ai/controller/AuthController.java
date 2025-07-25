@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +13,7 @@ import yps.systems.ai.object.SignIn;
 import yps.systems.ai.object.SignUp;
 import yps.systems.ai.service.AuthenticationService;
 
+
 @CrossOrigin(origins = "*", methods = {RequestMethod.POST, RequestMethod.GET})
 @RestController
 @RequestMapping("/authService")
@@ -19,14 +21,14 @@ public class AuthController {
 
     private final AuthenticationService authenticationService;
 
-    @GetMapping
-    public ResponseEntity<String> healthCheck() {
-        return ResponseEntity.ok("Auth service is running");
-    }
-
     @Autowired
     public AuthController(AuthenticationService authenticationService) {
         this.authenticationService = authenticationService;
+    }
+
+     @GetMapping
+    public ResponseEntity<String> healthCheck() {
+        return ResponseEntity.ok("Auth service is running");
     }
 
     @PostMapping("/signUp")
