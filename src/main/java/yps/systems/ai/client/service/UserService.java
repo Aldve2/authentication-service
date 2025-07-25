@@ -32,10 +32,11 @@ public class UserService {
         return response.getBody();
     }
 
-    public String save(User user) {
-        ResponseEntity<String> response = restTemplate.postForEntity(userServiceUrl, user, String.class);
-        return response.getBody();
-    }
+    public String save(User user, String personElementId) {
+    String url = userServiceUrl + "/" + personElementId;
+    ResponseEntity<String> response = restTemplate.postForEntity(url, user, String.class);
+    return response.getBody();
+}
 
     public String update(String elementId, User user) {
         HttpHeaders headers = new HttpHeaders();

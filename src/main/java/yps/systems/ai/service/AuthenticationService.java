@@ -43,7 +43,7 @@ public class AuthenticationService {
         User user = signUp.user();
         user.setPassword(encodedPassword);
         String personElementId = personService.save(signUp.person());
-        userService.save(user);
+        userService.save(user, personElementId);
         roleService.saveRelationToRole(signUp.roleElementId(), personElementId);
         return ResponseEntity.ok("User signed up successfully.");
     }

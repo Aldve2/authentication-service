@@ -19,6 +19,11 @@ public class AuthController {
 
     private final AuthenticationService authenticationService;
 
+    @GetMapping
+    public ResponseEntity<String> healthCheck() {
+        return ResponseEntity.ok("Auth service is running");
+    }
+
     @Autowired
     public AuthController(AuthenticationService authenticationService) {
         this.authenticationService = authenticationService;
