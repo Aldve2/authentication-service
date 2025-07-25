@@ -10,6 +10,7 @@ import yps.systems.ai.object.SignIn;
 import yps.systems.ai.object.SignUp;
 import yps.systems.ai.service.AuthenticationService;
 
+@CrossOrigin(origins = "*", methods = {RequestMethod.POST, RequestMethod.GET})
 @RestController
 @RequestMapping("/authService")
 public class AuthController {
